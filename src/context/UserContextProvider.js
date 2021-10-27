@@ -4,7 +4,7 @@ export const userContext = createContext();
 
 const UsercontextProvider = (props) => {
   const allUsers = [
-    { id: 1, name: "Shamil", surname: "Mammadov", job: "Developer" },
+    { id: 1, name: "Shamil", surname: "Mammadov", job: "developer" },
     { id: 2, name: "Emil", surname: "Mammadov", job: "business" },
     { id: 3, name: "Xezer", surname: "Karimli", job: "auditor" },
     { id: 4, name: "Ismayil", surname: "Rahimli", job: "developer" },
@@ -14,19 +14,15 @@ const UsercontextProvider = (props) => {
   const [filteredUser, setFilteredUser] = useState(allUsers);
   //functions
   const searchUser = (value) => {
-    if (value.length > 1) {
-      let findedUser = filteredUser.filter((user) => {
-        let userAllValue = Object.values(user).join("").slice(1).toUpperCase();
-        let find;
-        if (userAllValue.search(value.toUpperCase()) !== -1) {
-          find = user;
-        }
-        return find;
-      });
-      setFilteredUser(findedUser);
-    } else {
-      setFilteredUser(allUsers);
-    }
+    let findedUsers = filteredUser.filter((user) => {
+      let userAllValue = Object.values(user).slice(1).toString().toUpperCase();
+      let find;
+      if (userAllValue.includes(value.toUpperCase())) {
+        find = user;
+      }
+      return find;
+    });
+    setFilteredUser(findedUsers);
   };
   return (
     <userContext.Provider value={{ filteredUser, searchUser }}>
