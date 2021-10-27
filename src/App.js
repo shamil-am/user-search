@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Container, Row, Col } from "reactstrap";
+import SearchInput from "./components/SearchInput";
+import UserTable from "./components/UserTable";
+//styles
+import "./styles/app.css"
+//component
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Row>
+        <Col xs={12} md={6} lg={{ size: 4, offset: 4 }}>
+          <h1>User search</h1>
+          <SearchInput />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={12} md={6} lg={{ size: 4, offset: 4 }}>
+          <UserTable />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
