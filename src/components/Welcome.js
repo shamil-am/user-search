@@ -1,14 +1,21 @@
 import { Form, Input, Button, Checkbox } from "antd";
+import { useContext } from "react";
+import { userContext } from "./../context/UserContextProvider";
 
 const Welcome = () => {
+  //state
+  const { logged, setLogged } = useContext(userContext);
+
+  //functions
   const onFinish = (values) => {
     console.log("Success:", values);
+    setLogged(!logged);
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-
+  //components
   return (
     <Form
       name="basic"

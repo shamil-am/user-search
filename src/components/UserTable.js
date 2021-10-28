@@ -8,7 +8,7 @@ import { Tag } from "antd";
 const UserTable = () => {
   const { filteredUser, searchedValue } = useContext(userContext);
   const data = filteredUser.map((user) => {
-    const { id, name, username, company, phone, address } = user; //get users's value which will use in table
+    const { id, name, username, company, phone, address } = user; //get users's value which will be used in table
     return {
       key: id,
       name: (

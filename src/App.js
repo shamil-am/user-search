@@ -7,11 +7,10 @@ import { userContext } from "./context/UserContextProvider";
 function App() {
   //states
   const { logged } = useContext(userContext);
-
   //component's return
   return (
     <>
-      <WelcomePg />
+      {logged || <WelcomePg />}
       {logged && <UsersTablePg />}
     </>
   );
