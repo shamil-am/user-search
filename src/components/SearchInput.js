@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { userContext } from "../context/UserContextProvider";
-import { Input } from 'antd';
+import { Input } from "antd";
 
 const SearchInput = () => {
   const { searchUser } = useContext(userContext);
@@ -10,9 +10,7 @@ const SearchInput = () => {
   };
   //component
   return (
-    <div>
-      <Input type="text" placeholder="search" onChange={inputChangeHandler} />
-    </div>
+    <Input type="text" placeholder="search" onChange={inputChangeHandler} />
   );
 };
 

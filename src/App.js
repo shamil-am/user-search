@@ -1,25 +1,19 @@
-import { Container, Row, Col } from "reactstrap";
-import SearchInput from "./components/SearchInput";
-import UserTable2 from "./components/UserTable2";
+import UsersTablePg from "./pages/UsersTablePg";
+import WelcomePg from "./pages/WelcomePg";
+import { useContext } from "react";
+import { userContext } from "./context/UserContextProvider";
 
-//styles
-import "./styles/app.css";
 //component
 function App() {
+  //states
+  const { logged } = useContext(userContext);
+
+  //component's return
   return (
-    <Container>
-      <Row>
-        <Col xs={12} md={6} lg={{ size: 8, offset: 2 }}>
-          <h1>User search</h1>
-          <SearchInput />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={12} md={6} lg={{ size: 8, offset: 2 }}>
-          <UserTable2 />
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <WelcomePg />
+      {logged && <UsersTablePg />}
+    </>
   );
 }
 

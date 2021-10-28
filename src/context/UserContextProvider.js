@@ -8,6 +8,7 @@ const UsercontextProvider = (props) => {
   const [allUser, setAllUser] = useState([]);
   const [filteredUser, setFilteredUser] = useState([]);
   const [searchedValue, setSearchedValue] = useState("");
+  const [logged, setLogged] = useState(false);
   //functions
   const searchUser = (value) => {
     let findedUsers = [...allUser].filter((user) => {
@@ -16,7 +17,7 @@ const UsercontextProvider = (props) => {
         user.username,
         user.company.name,
         user.phone,
-        user.address.city
+        user.address.city,
       ]
         .toString()
         .toUpperCase();
@@ -42,7 +43,9 @@ const UsercontextProvider = (props) => {
   }, []);
   //components
   return (
-    <userContext.Provider value={{ filteredUser, searchUser, searchedValue }}>
+    <userContext.Provider
+      value={{ filteredUser, searchUser, searchedValue, logged }}
+    >
       {props.children}
     </userContext.Provider>
   );
