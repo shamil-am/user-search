@@ -16,6 +16,7 @@ const UsercontextProvider = (props) => {
         user.username,
         user.company.name,
         user.phone,
+        user.address.city
       ]
         .toString()
         .toUpperCase();
@@ -25,7 +26,7 @@ const UsercontextProvider = (props) => {
       }
       return find;
     });
-    setSearchedValue(value);
+    setSearchedValue(value); //will use fro highlighter
     setFilteredUser(findedUsers);
   };
   //effects

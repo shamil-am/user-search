@@ -7,7 +7,7 @@ import { SearchOutlined } from "@ant-design/icons";
 const UserTable = () => {
   const { filteredUser, searchedValue } = useContext(userContext);
   const data = filteredUser.map((user) => {
-    const { id, name, username, company, phone } = user;
+    const { id, name, username, company, phone, address } = user; //get users's value which will use in table
     return {
       key: id,
       name: (
@@ -42,6 +42,14 @@ const UserTable = () => {
           textToHighlight={phone}
         />
       ),
+      city: (
+        <Highlighter
+          highlightClassName="YourHighlightClass"
+          searchWords={[searchedValue]}
+          autoEscape={true}
+          textToHighlight={address.city}
+        />
+      ),
     };
   });
   const columns = [
@@ -49,21 +57,25 @@ const UserTable = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      width: "25%",
-      // ...this.getColumnSearchProps('name'),
+      width: "20%",
     },
     {
       title: "Username",
       dataIndex: "username",
       key: "username",
-      width: "25%",
-      // ...this.getColumnSearchProps('age'),
+      width: "20%",
+    },
+    {
+      title: "City",
+      dataIndex: "city",
+      key: "city",
+      width: "15%",
     },
     {
       title: "Company Name",
       dataIndex: "companyname",
       key: "companyname",
-      width: "20%",
+      width: "10%",
       // ...this.getColumnSearchProps('address'),
       // sorter: (a, b) => a.address.length - b.address.length,
       // sortDirections: ['descend', 'ascend'],
@@ -72,7 +84,7 @@ const UserTable = () => {
       title: "Phone numer",
       dataIndex: "number",
       key: "number",
-      width: "30%",
+      width: "35%",
       // ...this.getColumnSearchProps('address'),
       // sorter: (a, b) => a.address.length - b.address.length,
       // sortDirections: ['descend', 'ascend'],
