@@ -1,21 +1,23 @@
-import { createContext, useState } from "react";
+import axios from "axios";
+import { createContext, useState, useEffect } from "react";
 
 export const userContext = createContext();
 
 const UsercontextProvider = (props) => {
-  const allUsers = [
-    { id: 1, name: "Shamil", surname: "Mammadov", job: "developer" },
-    { id: 2, name: "Emil", surname: "Mammadov", job: "business" },
-    { id: 3, name: "Xezer", surname: "Karimli", job: "auditor" },
-    { id: 4, name: "Ismayil", surname: "Rahimli", job: "developer" },
-    { id: 5, name: "Namiq", surname: "Nazirli", job: "designer" },
-    { id: 6, name: "Orxan", surname: "Huseynov", job: "manager" },
-  ];
-  const [filteredUser, setFilteredUser] = useState(allUsers);
+  //states
+  const [allUser, setAllUser] = useState([]);
+  const [filteredUser, setFilteredUser] = useState([]);
   //functions
   const searchUser = (value) => {
-    let findedUsers = filteredUser.filter((user) => {
-      let userAllValue = Object.values(user).slice(1).toString().toUpperCase();
+    let findedUsers = [...allUser].filter((user) => {
+      let userAllValue = [
+        user.name,
+        user.username,
+        user.company.name,
+        user.phone,
+      ]
+        .toString()
+        .toUpperCase();
       let find;
       if (userAllValue.includes(value.toUpperCase())) {
         find = user;
@@ -24,6 +26,18 @@ const UsercontextProvider = (props) => {
     });
     setFilteredUser(findedUsers);
   };
+  //effects
+  useEffect(() => {
+    const url = "https://jsonplaceholder.typicode.com/users";
+    axios
+      .get(url)
+      .then((response) => {
+        setAllUser(response.data);
+        setFilteredUser(response.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  //components
   return (
     <userContext.Provider value={{ filteredUser, searchUser }}>
       {props.children}

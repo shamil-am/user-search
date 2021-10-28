@@ -9,8 +9,9 @@ const UserTable = () => {
       <thead>
         <tr>
           <th>Name</th>
-          <th>Surname</th>
-          <th>Job</th>
+          <th>Username</th>
+          <th>Company</th>
+          <th>Phone</th>
         </tr>
       </thead>
       <tbody>
@@ -18,8 +19,9 @@ const UserTable = () => {
           return (
             <tr key={user.id}>
               <td>{user.name}</td>
-              <td>{user.surname}</td>
-              <td>{user.job}</td>
+              <td>{user.username}</td>
+              <td>{user.company.name}</td>
+              <td>{user.phone}</td>
             </tr>
           );
         })}
