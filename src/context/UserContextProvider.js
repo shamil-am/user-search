@@ -7,6 +7,7 @@ const UsercontextProvider = (props) => {
   //states
   const [allUser, setAllUser] = useState([]);
   const [filteredUser, setFilteredUser] = useState([]);
+  const [searchedValue, setSearchedValue] = useState("");
   //functions
   const searchUser = (value) => {
     let findedUsers = [...allUser].filter((user) => {
@@ -24,6 +25,7 @@ const UsercontextProvider = (props) => {
       }
       return find;
     });
+    setSearchedValue(value);
     setFilteredUser(findedUsers);
   };
   //effects
@@ -39,7 +41,7 @@ const UsercontextProvider = (props) => {
   }, []);
   //components
   return (
-    <userContext.Provider value={{ filteredUser, searchUser }}>
+    <userContext.Provider value={{ filteredUser, searchUser, searchedValue }}>
       {props.children}
     </userContext.Provider>
   );
