@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { userContext } from "../context/UserContextProvider";
-import { Table, Input, Button, Space } from "antd";
+import { Table } from "antd";
 import Highlighter from "react-highlight-words";
-import { SearchOutlined } from "@ant-design/icons";
+import { Tag } from "antd";
+
 //
 const UserTable = () => {
   const { filteredUser, searchedValue } = useContext(userContext);
@@ -43,36 +44,38 @@ const UserTable = () => {
         />
       ),
       city: (
-        <Highlighter
-          highlightClassName="YourHighlightClass"
-          searchWords={[searchedValue]}
-          autoEscape={true}
-          textToHighlight={address.city}
-        />
+        <Tag color="#f50">
+          <Highlighter
+            highlightClassName="YourHighlightClass"
+            searchWords={[searchedValue]}
+            autoEscape={true}
+            textToHighlight={address.city}
+          />
+        </Tag>
       ),
     };
   });
   const columns = [
     {
-      title: "Name",
+      title: <Tag color="#2db7f5">Name</Tag>,
       dataIndex: "name",
       key: "name",
       width: "20%",
     },
     {
-      title: "Username",
+      title: <Tag color="#2db7f5">Username</Tag>,
       dataIndex: "username",
       key: "username",
       width: "20%",
     },
     {
-      title: "City",
+      title: <Tag color="#2db7f5">City</Tag>,
       dataIndex: "city",
       key: "city",
       width: "15%",
     },
     {
-      title: "Company Name",
+      title: <Tag color="#2db7f5">Company Name</Tag>,
       dataIndex: "companyname",
       key: "companyname",
       width: "10%",
@@ -81,7 +84,7 @@ const UserTable = () => {
       // sortDirections: ['descend', 'ascend'],
     },
     {
-      title: "Phone numer",
+      title: <Tag color="#2db7f5">Phone numer</Tag>,
       dataIndex: "number",
       key: "number",
       width: "35%",
@@ -91,7 +94,7 @@ const UserTable = () => {
     },
   ];
 
-  return <Table columns={columns} dataSource={data} />;
+  return <Table columns={columns} dataSource={data} style={{color: 'red'}} />;
 };
 
 export default UserTable;

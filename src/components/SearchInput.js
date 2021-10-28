@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { userContext } from "../context/UserContextProvider";
-import { DatePicker } from "antd";
+import { Input } from 'antd';
 
 const SearchInput = () => {
   const { searchUser } = useContext(userContext);
@@ -11,8 +11,7 @@ const SearchInput = () => {
   //component
   return (
     <div>
-      <input type="text" placeholder="search" onChange={inputChangeHandler} />
-      <DatePicker />
+      <Input type="text" placeholder="search" onChange={inputChangeHandler} />
     </div>
   );
 };
