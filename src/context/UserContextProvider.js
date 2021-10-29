@@ -12,7 +12,7 @@ const UsercontextProvider = (props) => {
 
   //functions
   const searchUser = (value) => {
-    let findedUsers = [...allUser].filter((user) => {
+    let findedUsers = allUser.filter((user) => {
       let userAllValue = [
         user.name,
         user.username,
